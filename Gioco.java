@@ -18,7 +18,7 @@ class Gioco {
             totaleTappe = Integer.parseInt(bufferedReader.readLine());
             tappe = new Tappa[totaleTappe];
 
-            //Utilizzo un ciclo di tipo FOR per riempire l'aray di tappe
+            //Utilizzo un ciclo di tipo FOR per riempire l'array di tappe
             for(int i = 0; i < tappe.length; i++) {
 
                 //Inizializzo delle variabili conteneti informazioni sulla singola tappa e utilizzando il parser otteniamo le informazioni dal file testuale

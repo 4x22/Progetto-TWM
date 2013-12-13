@@ -1,17 +1,18 @@
 import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
 class Pannello extends Frame { 
-	static TextArea testoTappa, segnaTappe;
-	static Button[] bottoniTappeRaggiungibili;
-	static Panel pannello;
+	static JTextArea testoTappa, segnaTappe;
+	static JButton[] bottoniTappeRaggiungibili;
+	static JPanel pannello;
 	public Pannello (String titolo) { 
 		super(titolo); 
-		pannello = new Panel(); 
+		pannello = new JPanel(); 
 		add(pannello, BorderLayout.SOUTH); 
-		testoTappa = new TextArea(Gioco.tappe[0].getTesto(),5,20); 
+		testoTappa = new JTextArea(Gioco.tappe[0].getTesto(),5,20); 
 		testoTappa.setEditable(false); 
 		add(testoTappa, BorderLayout.CENTER); 
-		segnaTappe = new TextArea("Fai la tua scelta!",5,20); 
+		segnaTappe = new JTextArea("Fai la tua scelta!",5,20); 
 		add(segnaTappe, BorderLayout.EAST);
 		mettiPulsanti(Gioco.tappe[0]);
 		setSize(640,360);
@@ -34,7 +35,7 @@ class Pannello extends Frame {
 		public void actionPerformed(ActionEvent evento) { 
 			String testoBottone = evento.getActionCommand();
 			cambiaTappa(Gioco.tappe[Integer.parseInt(testoBottone)]);
-			//"Appende" del testo riguardo la tappa selezionata alla TextArea segnaTappe.
+			//"Appende" del testo riguardo la tappa selezionata alla JTextArea segnaTappe.
 			segnaTappe.append("\nHai selezionato la tappa: " + testoBottone);
 			rimuoviBottoni();
 			mettiPulsanti(Gioco.tappe[Integer.parseInt(testoBottone)]);
@@ -55,9 +56,9 @@ class Pannello extends Frame {
 	//Aggiornare i pulsanti
 	public void mettiPulsanti(Tappa tappa){
 		int[] tappeRaggiungibili = tappa.getTappeRaggiungibili();
-		bottoniTappeRaggiungibili = new Button[tappeRaggiungibili.length];
+		bottoniTappeRaggiungibili = new JButton[tappeRaggiungibili.length];
 		for (int i = 0; i < bottoniTappeRaggiungibili.length; i++) {
-			bottoniTappeRaggiungibili[i] = new Button(Integer.toString(tappeRaggiungibili[i]));
+			bottoniTappeRaggiungibili[i] = new JButton(Integer.toString(tappeRaggiungibili[i]));
 			pannello.add(bottoniTappeRaggiungibili[i]);
 			bottoniTappeRaggiungibili[i].addActionListener(new Ascoltatore());
 		}
